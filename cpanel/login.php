@@ -1,3 +1,6 @@
+<?php
+session_start(); 
+?>
 <!doctype html>
 <!-- 
 * Bootstrap Simple Admin Template
@@ -28,21 +31,29 @@
                     </div>
                     <h6 class="mb-4 text-muted">Sign in to your account</h6>
                    
-                    <form action="" method="">
+                    <form action="php/controller/loginController.php" method="post">
+
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" required>
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" required>
+                            <input type="password" name="password" class="form-control" placeholder="Password" required>
                         </div>
-                        <div class="form-group text-left">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="remember" class="custom-control-input" id="remember-me">
-                                <label class="custom-control-label" for="remember-me">Remember me</label>
-                            </div>
+                        <div class="form-group">
+
+                            <select name="type" >
+                                <option value="user">مستخدم</option>
+                                <option value="company">شركة</option>
+                            </select>
                         </div>
-                        <button class="btn btn-primary shadow-2 mb-4">Login</button>
+                       
+                        <button type="submit" name="login" class="btn btn-primary shadow-2 mb-4">Login</button>
                     </form>
+                    <?php if (isset($_SESSION['error'])) { ?>
+    
+                        <div class="alert alert-danger" role="alert"><?php echo $_SESSION['error'];unset($_SESSION['error']); ?> </div>
+
+                    <?php } ?>
                     <p class="mb-2 text-muted">Forgot password? <a href="forgot-password.html">Reset</a></p>
                     <p class="mb-0 text-muted">Don’t have an account? <a href="signup.html">Signup</a></p>
                 </div>

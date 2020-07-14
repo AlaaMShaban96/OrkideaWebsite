@@ -1,7 +1,7 @@
 <?php session_start(); 
 // include 'php/UserController.php';
 include('layout/navbar.php');
-?>
+?>  
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">

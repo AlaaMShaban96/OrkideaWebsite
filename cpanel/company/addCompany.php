@@ -21,7 +21,7 @@
     } ?>
     <div class="card-body">
         <h5 class="card-title">Lorem ipsum dolor sit amet consectetur.</h5>
-        <form accept-charset="utf-8" action="../php/controller/CompanyController.php"   method="post">
+        <form accept-charset="utf-8" action="/php/controller/CompanyController.php"   method="post">
         
             <div class="form-group">
                 <label for="email">Name</label>
@@ -58,7 +58,7 @@
             </div>
            
             <div class="form-group">       
-                <input type="submit" name="createCompany" class="btn btn-primary">
+                <input type="submit" name="createCompanyWeb" class="btn btn-primary">
             </div>
         </form>
     </div>

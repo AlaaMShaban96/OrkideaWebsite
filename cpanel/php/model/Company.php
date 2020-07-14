@@ -5,12 +5,14 @@ class Company {
   
     
   private $id;
+  private $ownerName;
   private $name;
   private $email;
   private $password;
   private $phone_number;
   private $regCode;
-  private $loction;
+  private $x;
+  private $y;
   private $img_path;
 
  
@@ -32,30 +34,40 @@ class Company {
     return (new self)->getCompany($id,$conn);
     
   } 
+  static function Login($email,$password,$conn)
+  {
+    
+    return (new self)->loginCompany($email,$password,$conn);
+    
+  } 
 
   function update($request,$conn) 
   {
     $this->id=$request["id"];
+    $this->ownerName=$request["ownerName"];
     $this->name=$request["name"];
     $this->email=$request["email"];
     $this->password=$request["password"];
     $this->phone_number=$request["phone_number"];
     $this->regCode=$request["regCode"];
-    $this->loction=$request["loction"];
+    $this->x=$request["x"];
+    $this->y=$request["y"];
 
     return $this->updateCompany($conn);
     
   } 
-  function create($request,$conn)
+  function create($request, $conn)
   {
    
    
+    $this->ownerName=$request["ownerName"];
     $this->name=$request["name"];
     $this->email=$request["email"];
     $this->password=$request["password"];
     $this->phone_number=$request["phone_number"];
     $this->regCode=$request["regCode"];
-    $this->loction=$request["loction"];
+    $this->x=$request["x"];
+    $this->y=$request["y"];
     
      return $this->insert($conn);
   }
@@ -70,14 +82,16 @@ class Company {
         return "Connection failed: ";
       } 
       
-      $sql = "INSERT INTO companies (name , email , password,phone_number,regCode,loction)
+      $sql = "INSERT INTO companies (name ,ownerName, email , password,phone_number,regCode,x,y)
       VALUES (
        '".$this->name."',
+       '".$this->ownerName."',
         '".$this->email."', 
         '".$this->password."', 
         '".$this->phone_number."', 
         '".$this->regCode."', 
-        '".$this->loction."')";
+        '".$this->x."', 
+        '".$this->y."')";
 
 
       if ($conn->query($sql) === TRUE) {
@@ -148,6 +162,18 @@ class Company {
     $sql = "SELECT * from  companies where id=$id ";
 
      return $result = $conn->query($sql);
+  } 
+  private static function loginCompany($email,$password,$conn)
+  {
+    if ($conn->connect_error) {
+
+      
+      return "Connection failed: ";
+    } 
+    
+    $sql = "SELECT * from  companies where email='$email' and password='$password'";
+
+     return  $conn->query($sql);
   } 
   
   

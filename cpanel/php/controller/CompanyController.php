@@ -37,11 +37,23 @@
     
     if(isset($_POST['createCompany'])){
 
-       $user= new Company();
+       $company= new Company();
 
-       $_SESSION['message'] = $user->create($_POST,$conn);
+       $_SESSION['message'] = $company->create($_POST,$conn);
         
+       
         header('Location: /Projects/OrkideaWebsite/cpanel/company/addCompany.php'); 
+
+     
+    }
+    if(isset($_POST['createCompanyWeb'])){
+
+       $company= new Company();
+
+      //  print_r($_POST);
+       $_SESSION['message'] = $company->create($_POST,$conn);
+        
+       header('Location: /Projects/OrkideaWebsite/cpanel/signupCompany.php'); 
       
      
     }
